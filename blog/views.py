@@ -1,10 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from . import models
 
 def postListView(request):
     post_value = models.Post.objects.all()
     return render(request, 'post/post.html', {'post_key': post_value})
+
+def postDetailView(request, id):
+    post_id = get_object_or_404(models.Post, id=id)
+    return render(request, 'post/post_detail.html', {'post_id': post_id})
+
+
 
 # def postListView(request):
 #     post_value = models.Post.objects.all()
